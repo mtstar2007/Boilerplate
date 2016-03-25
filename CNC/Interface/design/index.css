@@ -1,6 +1,6 @@
 body{
-	background-color: silver;
-	font-family: Century Gothic, sans-serif;
+	background-color: #D3D3D3;
+	font-family: 'Quicksand', sans-serif;;
 }
 ul{
 	list-style-type: none;
@@ -11,7 +11,7 @@ ul{
 }
 li a{
 	display:block;
-	color: #000;
+	color: #111;
 	padding: 8px 0 8px 16px;
 	text-decoration: none;
 }
@@ -19,6 +19,45 @@ li a:hover{
 	background-color: #555;
 	color: white;
 }
+
 table{
+	border-collapse: collapse;
+    border-spacing: 0;
+    position: relative;
+    margin-top: 40px;
 	text-align: center;
+}
+
+tr{
+	text-align: left;
+}
+
+thead {
+	color: #2575a4;
+}
+
+tbody tr:hover{
+	background-color: white;
+}
+
+header{
+	color: #2575a4;
+	position: fixed;
+	top: 0px;
+}
+
+menu{
+	position: fixed;
+	top: 50px;
+	left: 10px;
+	width: 100px;
+}
+
+#main{
+	height: auto;
+	width: auto;
+	right: 10px;
+	position: absolute;
+	margin-right: 10px;
+	padding: 10px;
 }
