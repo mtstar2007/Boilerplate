@@ -20,6 +20,11 @@ li a:hover{
 	color: white;
 }
 
+li button:hover{
+	background-color:#555;
+	color: white;
+}
+
 table{
 	border-collapse: collapse;
     border-spacing: 0;
