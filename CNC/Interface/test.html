@@ -5,26 +5,24 @@
 <div id="id01"></div>
 
 <script>
-var xmlhttp = new XMLHttpRequest();
-var url = "http://botnet.artificial.engineering:8080/api/Status";
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://botnet.artificial.engineering:8080/api/Status', true);
 
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-        myFunction(myArr);
+// Hack to pass bytes through unprocessed.
+xhr.overrideMimeType('text/plain; charset=x-user-defined');
+
+xhr.onreadystatechange = function(e) {
+  if (this.readyState == 4 && this.status == 200) {
+    var binStr = this.responseText;
+    for (var i = 0, len = binStr.length; i < len; ++i) {
+      var c = binStr.charCodeAt(i);
+      //String.fromCharCode(c & 0xff);
+      var byte = c & 0xff;  // byte at offset i
     }
+  }
 };
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
 
-function myFunction(arr) {
-    var out = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        out += '<p>' + arr[i].id + '-' + arr[i].ip + '-' + arr[i].task + ' ' + arr[i].workload + '</p><br>' ;
-    }
-    document.getElementById("id01").innerHTML = out;
-}
+xhr.send();
 </script>
 
 </body>
