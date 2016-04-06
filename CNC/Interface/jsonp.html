@@ -1,0 +1,24 @@
+<html>
+<script>
+function createCORSRequest(method, url){
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr){
+        xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined"){
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    } else {
+        xhr = null;
+    }
+    return xhr;
+}
+
+var request = createCORSRequest("get", "http://botnet.artificial.engineering:8080/api/Status");
+if (request){
+    request.onload = function(){
+        //do something with request.responseText
+    };
+    request.send();
+}
+</script>
+</html>
