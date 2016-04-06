@@ -12,7 +12,7 @@
 	<link rel="stylesheet" media="print" href="./design/print.css">
 	<script>
     function toggleText(button_id)
-    {                      
+    {            
        if (document.getElementById(button_id).innerText == "Start")
        {
            document.getElementById(button_id).innerText = "Stop";
@@ -51,29 +51,30 @@
 						<th>IP</th>
 						<th>Task</th>
 						<th>Status</th>
+						<th>Options</th>
 					<tr>
 				</thead>
 				<tbody>
-					<tr>
-					<td><button id="button_id" onClick="toggleText(this.id);">Start</button></td>
-					</tr>
 					<tr>
 						<td>Workload 1</td>
 						<td>192.168.1.1</td>
 						<td>run server.sh</td>
 						<td>Active</td>
+						<td><button class="button" id="button_id" onClick="toggleText(this.id);">Start</button></td>
 					</tr>
 					<tr>
 						<td>Workload 2</td>
 						<td>192.168.1.1</td>
 						<td>run client.sh</td>
 						<td>Active</td>
+						<td><button class="button" id="button_id" onClick="toggleText(this.id);">Start</button></td>
 					</tr>
-										<tr>
+					<tr>
 						<td>Workload 1</td>
 						<td>192.168.1.1</td>
 						<td>run server.sh</td>
 						<td>Active</td>
+						<td><button class="button" id="button_id" onClick="toggleText(this.id);">Start</button></td>
 					</tr>
 					<tr>
 						<td>Workload 2</td>
