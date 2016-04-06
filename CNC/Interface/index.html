@@ -10,18 +10,28 @@
 	
 	<link rel="stylesheet" href="./design/index.css">
 	<link rel="stylesheet" media="print" href="./design/print.css">
+
+	<script type="text/javascript" src="./js/jquery-latest.js"></script> 
+	<script type="text/javascript" src="./js/jquery.tablesorter.js"></script> 
 	<script>
     function toggleText(button_id)
     {            
-       if (document.getElementById(button_id).innerText == "Start")
+       if (document.getElementById(button_id).innerHTML == "Start")
        {
-           document.getElementById(button_id).innerText = "Stop";
+           document.getElementById(button_id).innerHTML = "Stop";
        }
        else
        {
-         document.getElementById(button_id).innerText = "Start";
+         document.getElementById(button_id).innerHTML = "Start";
        }
     }
+
+$(document).ready(function() 
+    { 
+        $("#status-overview").tablesorter(); 
+    } 
+); 
+    
     </script>
 	
 	

@@ -27,7 +27,7 @@ li button:hover{
 
 table{
 	border-collapse: collapse;
-    border-spacing: 0;
+    border-spacing: 5;
     position: relative;
     margin-top: 40px;
 	text-align: center;
