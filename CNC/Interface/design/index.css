@@ -23,6 +23,9 @@ li a:hover{
 li button:hover{
 	background-color:#555;
 	color: white;
+	
+    transition: height 5s;
+  	webkit-transition: height 5s;
 }
 
 table{
@@ -87,25 +90,48 @@ main{
 	top: 0px;
 }
 
-main > section {
+/* main > section {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 100%;
-	left:0px;
-}
+	
+} */
 
 main > section#status {
+	
 	position: absolute;
 	width:100%;
 	height:100%;
 	top: 0%;
+	overflow: hidden;
+		
 }
+
 
 main > section#tasks{
 	position: absolute;
+	width:100%;
 	top: 100%;
+	height:100%;
 }
 
-
-
+@keyframes getup {
+  0% {
+    
+    top: 100%;
+    
+  }
+  100% {
+    top: -120%;
+  }
+}
+.tabelle {
+	top:90%;
+  	height: auto;
+  	position: absolute;
+  	width: 100%;
+ }
+.tabelle:hover {
+  	animation: getup 10s linear;
+ }
