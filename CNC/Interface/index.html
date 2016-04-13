@@ -13,6 +13,7 @@
 
 	<script type="text/javascript" src="./js/jquery-latest.js"></script> 
 	<script type="text/javascript" src="./js/jquery.tablesorter.js"></script> 
+	<script type="text/javascript" src="./js/api.js"></script> 
 	<script>
     function toggleText(button_id)
     {            
@@ -29,7 +30,9 @@
 $(document).ready(function() 
     { 
         $("#status-overview").tablesorter(); 
-    } 
+    }
+    
+    
 ); 
     
     </script>
@@ -44,16 +47,14 @@ $(document).ready(function()
 	
 	<aside>
 		<menu>
-			<li class="selected1"><a href="#status">Status</a></li>
-			<li class="selected2"><a href="#tasks">Tasks</a></li>
-			
-			
+			<li class="link-status"><a href="#status">Status</a></li>
+			<li class="link-tasks"><a href="#tasks">Tasks</a></li>			
 		</menu>
 	</aside>
 
 	<main class="tabelle">
 		<section  id="status">
-			<table id="status-overview">
+			<table id="status-overview" >
 				<thead>
 					<tr>
 						<th>Workload</th>
@@ -64,261 +65,18 @@ $(document).ready(function()
 					<tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-						<td><button class="button" id="button_id1" onClick="toggleText(this.id);">Start</button></td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-						<td><button class="button" id="button_id2" onClick="toggleText(this.id);">Start</button></td>
-					</tr>
-					<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-						<td><button class="button" id="button_id3" onClick="toggleText(this.id);">Start</button></td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-										<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 2</td>
-						<td>192.168.1.1</td>
-						<td>run client.sh</td>
-						<td>Active</td>
-					</tr>
-					<tr>
-						<td>Workload 1</td>
-						<td>192.168.1.1</td>
-						<td>run server.sh</td>
-						<td>Active</td>
-					</tr>
 				</tbody>
 			</table>
 		</section>
+		
 		<section id="tasks">
 			<p>Currently no Tasks active :(</p>
 		</section>
 	</main>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+	initialize();
+  });
+</script>
 </html>
