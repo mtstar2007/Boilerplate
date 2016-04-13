@@ -87,51 +87,21 @@ main{
 	bottom: 0px;
 	left: 50%;
 	overflow:hidden;
-	top: 0px;
+	top: 0%;
 }
 
-/* main > section {
-	position: absolute;
+main > section {
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 100%;
-	
-} */
-
-main > section#status {
-	
-	position: absolute;
-	width:100%;
-	height:100%;
-	top: 0%;
-	overflow: hidden;
-		
-}
-
-
-main > section#tasks{
-	position: absolute;
-	width:100%;
-	top: 100%;
-	height:100%;
-}
+} 
 
 @keyframes getup {
-  0% {
-    
-    top: 100%;
-    
-  }
-  100% {
-    top: -120%;
-  }
+	0% {top: 100%;}
+	100% {top: 0%;}
 }
-.tabelle {
-	top:90%;
-  	height: auto;
-  	position: absolute;
-  	width: 100%;
- }
-.tabelle:hover {
-  	animation: getup 10s linear;
- }
+section:target {
+	top:0%;
+  	animation: getup 2s linear;
+}
