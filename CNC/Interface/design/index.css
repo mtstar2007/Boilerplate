@@ -96,12 +96,7 @@ main > section {
 	height: 100%;
 	top: 100%;
 } 
-
-@keyframes getup {
-	0% {top: 100%;}
-	100% {top: 0%;}
-}
-section:target {
+main>section:target {
 	top:0%;
-  	animation: getup 2s linear;
+  	transition: all 2s ease-out;
 }
