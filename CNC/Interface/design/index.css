@@ -1,42 +1,45 @@
-body{
+body {
 	background-color: #D3D3D3;
 	font-family: 'Quicksand', sans-serif;;
 }
-ul{
+
+ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	width: 300px;
 	background-color: #f1f1f1;
 }
-li a{
+
+li a {
 	display:block;
 	color: #111;
 	padding: 8px 0 8px 16px;
 	text-decoration: none;
 }
-li a:hover{
+
+li a:hover {
 	background-color: #555;
 	color: white;
 }
 
-li button:hover{
+li button:hover {
 	background-color:#555;
 	color: white;
 	
-    transition: height 5s;
+	transition: height 5s;
   	webkit-transition: height 5s;
 }
 
-table{
+table {
 	border-collapse: collapse;
-    border-spacing: 5px;
-    position: relative;
-    margin-top: 40px;
+	border-spacing: 5px;
+	position: relative;
+	margin-top: 40px;
 	text-align: center;
 }
 
-tr{
+tr {
 	text-align: left;
 }
 
@@ -44,22 +47,22 @@ thead {
 	color: #2575a4;
 }
 
-tbody tr:hover{
+tbody tr:hover {
 	background-color: white;
 }
 
-header{
+header {
 	color: #2575a4;
 	position: fixed;
 	top: 0px;
 }
 
-
 aside {
-		width: 100px;
-		height: auto;
+	width: 100px;
+	height: auto;
 }
-menu{
+
+menu {
 	position: fixed;
 	top: 50px;
 	left: 10px;
@@ -67,17 +70,17 @@ menu{
 }
 
 .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 3px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
+	background-color: #4CAF50;
+  	border: none;
+	color: white;
+	padding: 3px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
 }
 
-main{
+main {
 	height: auto;
 	width: auto;
 	right: 10px;
@@ -86,7 +89,7 @@ main{
 	padding: 10px;
 	bottom: 0px;
 	left: 50%;
-	overflow:hidden;
+	overflow: auto;
 	top: 0%;
 }
 
@@ -97,11 +100,7 @@ main > section {
 	top: 100%;
 } 
 
-@keyframes getup {
-	0% {top: 100%;}
-	100% {top: 0%;}
-}
 section:target {
 	top:0%;
-  	animation: getup 2s ease;
+  	transition: all 1s ease-out;
 }
