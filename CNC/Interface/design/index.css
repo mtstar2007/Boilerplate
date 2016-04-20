@@ -68,11 +68,10 @@ main {
 	position: absolute;
 	height: auto;
 	width: auto;
-	top: 0%;
+	top: 50%;
 	right: 10%;
 	bottom: 0px;
 	left: 50%;
-	overflow: hidden;
 }
 
 main > section {
