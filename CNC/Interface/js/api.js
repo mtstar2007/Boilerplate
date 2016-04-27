@@ -15,7 +15,6 @@ var initialize = function() {
 			var code = '';
 
 			for (var d = 0, dl = data.length; d < dl; d++) {
-
 				var entry = data[d];
 
 				code += '<tr>';
