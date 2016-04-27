@@ -7,54 +7,25 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-	
 	<link rel="stylesheet" href="./design/index.css">
 	<link rel="stylesheet" media="print" href="./design/print.css">
-
 	<script type="text/javascript" src="./js/jquery-latest.js"></script> 
 	<script type="text/javascript" src="./js/jquery.tablesorter.js"></script> 
 	<script type="text/javascript" src="./js/api.js"></script> 
-	<script>
-    function toggleText(button_id)
-    {            
-       if (document.getElementById(button_id).innerHTML == "Start")
-       {
-           document.getElementById(button_id).innerHTML = "Stop";
-       }
-       else
-       {
-         document.getElementById(button_id).innerHTML = "Start";
-       }
-    }
-
-$(document).ready(function() 
-    { 
-        $("#status-overview").tablesorter(); 
-    }
-    
-    
-); 
-    
-    </script>
-	
-	
+	<script type="text/javascript" src="./js/button.js"></script>
 </head>
-
-<body>
-	<header>
-		<h1>CNC Interface</h1>
-	</header>
-	
+<body>	
 	<aside>
 		<menu>
 			<li class="link-status"><a href="#status">Status</a></li>
 			<li class="link-tasks"><a href="#tasks">Tasks</a></li>			
 		</menu>
 	</aside>
-
+	<div id="showInfo"></div>
 	<main>
 		<section  id="status">
 			<table id="status-overview" >
+							<p id="lastChange"></p>
 				<thead>
 					<tr>
 						<th>Workload</th>
@@ -70,13 +41,21 @@ $(document).ready(function()
 		</section>
 		
 		<section id="tasks">
-			<p>Currently no Tasks active :(</p>
+			<form>
+				ID: <input type="text" name ="id"></input> Type: <input type="text" name ="type"></input> Data: <input type="text" name ="type"></input><button id="sendTask">Send Task</button>
+				</form>
+			</form>
 		</section>
 	</main>
+	<footer>
+	<p>CNC Interface by Inan Bayram, Mustafa Yildiz, Asim Bababalim</p>
+</footer>
 </body>
+
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
 	initialize();
   });
+
 </script>
 </html>

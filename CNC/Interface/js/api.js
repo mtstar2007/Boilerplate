@@ -27,13 +27,11 @@ var initialize = function() {
 				code += '</tr>';
 
 			}
-
+			var date = new Date();
+			document.getElementById("lastChange").innerHTML = "Letzte Aktualisierung: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()+" Uhrzeit: " +date.getHours()+ ":"+ date.getMinutes()+ ":"+date.getSeconds();
 			content.innerHTML = code;
-
 		} else {
-
 			content.innerHTML = 'Failed to load :(';
-
 		}
 	
 	};
