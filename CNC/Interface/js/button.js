@@ -43,10 +43,12 @@ var showInfo = function(comand) {
       document.getElementById("showInfo").style.top = "0px";
       if(comand == "start"){
         document.getElementById("showInfo").innerHTML = "Erfolgreich gestartet :)"
+        document.getElementById("showInfo").style.background="green";
         hideInfo();
       }
       if(comand == "stop"){
         document.getElementById("showInfo").innerHTML = "Erfolgreich angehalten :)"
+        document.getElementById("showInfo").style.background="red";
         hideInfo();
       }
       if(comand == "error"){
