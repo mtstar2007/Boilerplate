@@ -45,12 +45,12 @@ var showInfo = function(comand) {
       document.getElementById("showInfo").style.top = "0px";
       if(comand == "start"){
         document.getElementById("showInfo").innerHTML = "Erfolgreich gestartet :)"
-        document.getElementById("showInfo").style.background="green";
+        document.getElementById("showInfo").style.background = "#4CAF50";
         hideInfo();
       }
       if(comand == "stop"){
         document.getElementById("showInfo").innerHTML = "Erfolgreich angehalten :)"
-        document.getElementById("showInfo").style.background="red";
+        document.getElementById("showInfo").style.background = "red";
         hideInfo();
       }
       if(comand == "error"){
