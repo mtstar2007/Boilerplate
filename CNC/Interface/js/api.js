@@ -53,7 +53,7 @@ var getStatus = function() {
 *	Get Tasks Information from BotnetServer
 * 	(Waiting for activtating of Tasks api)
 */
-var getTasks = function() {
+var getTasksXHR = function() {
 
 	var xhr    = new XMLHttpRequest();
 	var content = document.querySelector('#status-overview tbody');
@@ -89,6 +89,39 @@ var getTasks = function() {
 	xhr.send(null);
 
 };
+
+
+/**
+*	Get Tasks Informaton with Fetch
+**/
+
+var getTasks = function(){
+	var table = document.querySelector('#tasks-overview tbody');
+
+	fetch('http://botnet.artificial.engineering:8080/api/Tasks', {
+		method: 'get'
+	}).then(function(response){
+		return response.json();
+	}).then(function(data){
+		if(data instanceof Array){
+			var taskArr = data;
+			var taskTable = '';
+			for(var i = 0, il = data.length; i < il; i++) {
+				taskTable += '<tr>';
+				taskTable += '<td>' + taskArr[i].id + '</td>';
+				taskTable += '<td>' + taskArr[i].type + '</td>';
+				taskTable += '<td>' + taskArr[i].data.input + '</td>';
+				taskTable += '<td>' + taskArr[i].data.output + '</td>';
+				taskTable += '<tr>';
+			}
+		table.innerHTML = taskTable;
+		} else {
+			table.innerHTML = 'Failed to load :('
+		}
+	}).catch(function(err){
+		console.log("No Connection to the Tasks API :(")
+	});
+}
 
 
 /**

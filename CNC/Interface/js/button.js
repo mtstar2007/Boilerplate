@@ -18,6 +18,29 @@ function toggleText(button_id) {
   }
 }
 
+
+var sendTask = function(id, type, data) {
+  var xhr = new XMLHttpRequest();
+
+  alert("oglum");
+
+  xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Tasks');
+  
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+  xhr.setRequestHeader('X-CSRF-TOKEN', 'c0724862f1aef7d1fc77488a39718b34');
+
+  var data;
+  xhr.onload = function() {
+
+    console.log(id+type+data);
+  // data is now a Object
+  data = { "id": id, "type": comand , "data": data };
+  };
+  
+  xhr.send(data);
+};
+
 var sendcomand = function(id, comand) {
   var xhr = new XMLHttpRequest();
 
@@ -69,13 +92,4 @@ my_timeout = setTimeout(function() {
     my_timeout = null;
 }, 3000);
 
-};
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
 };
