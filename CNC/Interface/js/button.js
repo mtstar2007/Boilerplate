@@ -25,6 +25,7 @@ var sendcomand = function(id, comand) {
   
   xhr.responseType = 'json';
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+  xhr.setRequestHeader('X-CSRF-TOKEN', 'c0724862d1aef7d1fc77488a39718b34');
   var pic;
   fetch(pic).then(function(){
     
@@ -32,6 +33,7 @@ var sendcomand = function(id, comand) {
   var data;
   xhr.onload = function() {
 
+  // data is now a Object
   data = { "id": id, "action": comand };
   };
   

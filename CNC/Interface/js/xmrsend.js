@@ -5,6 +5,7 @@ var sendcomand = function(id, comand) {
 	
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhr.setRequestHeader();
 	var pic;
 	fetch(pic).then(function(){
 		

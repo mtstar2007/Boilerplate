@@ -2,8 +2,12 @@
 *	Get Status Information from BotnetServer
 */
 
-var iii;
 var getStatus = function() {
+
+	setTimeout(function(){
+   		//window.location.reload(true);
+   		getStatus();
+	}, 10000);
 
 	var xhr    = new XMLHttpRequest();
 	var content = document.querySelector('#status-overview tbody');
@@ -14,7 +18,7 @@ var getStatus = function() {
 	xhr.onload = function() {
 	
 		var data = xhr.response;
-		iii = data;
+		if (data !== null){
 		if (data instanceof Array) {
 
 			var code = '';
@@ -37,6 +41,7 @@ var getStatus = function() {
 		} else {
 			content.innerHTML = 'Failed to load :(';
 		}
+	}
 	
 	};
 	
@@ -92,7 +97,7 @@ var getTasks = function() {
 var richtung = true;
 var sortierer = function(){
 	//var zahlen = new Array(0.5, 0.1, 1, 27, 2, 10, 4, "192.168.1.1", "192.168.1.7");
-	var zahlen = iii.join();
+	//var zahlen = iii.join();
 
 	//var test = zahlen[7].split(".");
 	//console.log(test);
