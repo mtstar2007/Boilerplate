@@ -88,14 +88,13 @@ header {
 }
 
 footer {
-	display: block;
 	position: fixed;
 	color: white;
-	padding: 8px;
+	padding: 0px;
 	margin: 0px;
 	bottom: 0px;
 	left: 0px;
-	height: 30px;
+	height: 45px;
 	width: 100%;
 	text-align: center;
 	background: #363f3e;
