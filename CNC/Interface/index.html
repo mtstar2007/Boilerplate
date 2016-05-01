@@ -23,10 +23,10 @@
 	</aside>
 	<div id="showInfo"></div>
 	<main>
-		<section  id="status">
+		<section id="status">
 			<table id="status-overview" >
-							<p id="lastChange"></p>
-				<thead>
+				<p id="lastChange"></p>
+				<thead onclick="sortierer();">
 					<tr>
 						<th>Workload</th>
 						<th>IP</th>
@@ -53,11 +53,9 @@
 	<p>CNC Interface by Inan Bayram, Mustafa Yildiz, Asim Bababalim</p>
 </footer>
 </body>
-
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
-	initialize();
+	getStatus();
   });
-
 </script>
 </html>
