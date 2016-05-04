@@ -139,16 +139,16 @@ main > section{
 main > section:target {
 	top: 0%;
 	transition: all 1s ease-out;
-    	visibility: visible;
+    visibility: visible;
 }
 
 #refreshButton {
 	position: fixed;
+	background-color: #2F3736;
+	background-image:url("../pictures/refresh_64.png");
+	height: 64px;
+	width: 64px;
 	right: 10%;
 	bottom: 10%;
-	border: 2px outset black;
-	background-color: #98F5FF;
-	height: 50px;
-	width: 50px;
-	
+	border: 0px;
 }
