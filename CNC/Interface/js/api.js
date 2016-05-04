@@ -5,7 +5,7 @@ var getStatus = function() {
 
 	setTimeout(function(){
    		getStatus();
-	}, 10000);
+	}, 1000000000000000);
 
 	var xhr    = new XMLHttpRequest();
 	var content = document.querySelector('#status-overview tbody');
