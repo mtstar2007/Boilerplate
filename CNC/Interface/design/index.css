@@ -141,3 +141,14 @@ main > section:target {
 	transition: all 1s ease-out;
     	visibility: visible;
 }
+
+#refreshButton {
+	position: fixed;
+	right: 10%;
+	bottom: 10%;
+	border: 2px outset black;
+	background-color: #98F5FF;
+	height: 50px;
+	width: 50px;
+	
+}
