@@ -3,9 +3,9 @@
 */
 var getStatus = function() {
 
-	setTimeout(function(){
-   		getStatus();
-	}, 1000000000000000);
+	//setTimeout(function(){
+   	//	getStatus();
+	//}, 100000000000);
 
 	var xhr    = new XMLHttpRequest();
 	var content = document.querySelector('#status-overview tbody');
