@@ -25,7 +25,7 @@
 	<div id="showInfo"></div>
 	<main>
 		<section id="status">
-			<table id="status-overview" >
+			<table id="status-overview" onclick="">
 				<p id="lastChange"></p>
 				<thead onclick="sortierer();">
 					<tr>
@@ -54,11 +54,11 @@
 			</tbody>
 
 		</table>
-			<form onsubmit="javascript: sendNewTask(document.getElementById(id).value,document.getElementById(type).value,document.getElementById(data).value)">
+			<form>
 				<label>ID: </label><input type="text" name="id" id="id"></input>
 				<label>Type: </label><select name = "type" id="type"><option value="hash-md5">Hash MD5</option><option value="hash-sha256">Hash-sha256</option><option value="crack-md5">Crack-MD5</option></select>
 				<label>Data: </label><input type="text" name ="data" id="data"/required></input>
-				<button id="sendTask">Send Task</button>
+				<button id="sendTask" onclick="sendNewTask(document.getElementById('id').value,document.getElementById('type').value,document.getElementById('data').value)">Send Task</button>
 			</form>
 		</section>
 		<button id="refreshButton" onclick=refreshPage()></button>
