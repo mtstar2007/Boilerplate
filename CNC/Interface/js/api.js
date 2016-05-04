@@ -65,7 +65,7 @@ var getStatus = function() {
 };
 
 
-function refreshPage = function(){
+var refreshPage = function(){
 	var page = window.location.hash;
 
 	if(page === "#tasks"){
