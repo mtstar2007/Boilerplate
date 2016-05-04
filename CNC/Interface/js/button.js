@@ -19,6 +19,8 @@ function toggleText(button_id) {
 };
 
 
+
+
 var sendNewTask = function(id, type, data) {
   var xhr = new XMLHttpRequest();
 

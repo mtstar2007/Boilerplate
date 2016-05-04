@@ -65,6 +65,16 @@ var getStatus = function() {
 };
 
 
+function refreshPage = function(){
+	var page = window.location.hash;
+
+	if(page === "#tasks"){
+		getTasks();
+	} else {
+		getStatus();
+	}
+};
+
 /**
 *	Get Tasks Informaton with Fetch
 */
