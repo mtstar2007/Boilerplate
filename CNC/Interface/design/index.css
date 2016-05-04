@@ -82,13 +82,6 @@ menu {
 	margin-top: 0px;
 }
 
-
-
-header {
-	background: #2F3736;
-	width: 150px;
-}
-
 footer {
 	position: fixed;
 	color: white;
@@ -146,5 +139,5 @@ main > section{
 main > section:target {
 	top: 0%;
 	transition: all 1s ease-out;
-    visibility: visible;
+    	visibility: visible;
 }
