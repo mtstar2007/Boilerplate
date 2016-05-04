@@ -1,6 +1,6 @@
 function toggleText(button_id) {            
   if (document.getElementById(button_id).innerHTML == "Start") {
-    if(sendcomand(button_id, "start")) {
+    if(sendcomand(button_id, true)) {
       document.getElementById(button_id).innerHTML = "Stop";
       document.getElementById(button_id).style.background = "red";
       showInfo("start");
@@ -8,7 +8,7 @@ function toggleText(button_id) {
       showInfo("error");
     }
   } else {
-    if(sendcomand(button_id, "stop")) {
+    if(sendcomand(button_id, false)) {
       document.getElementById(button_id).innerHTML = "Start";
       document.getElementById(button_id).style.background = "#4CAF50";
       showInfo("stop");
@@ -16,53 +16,64 @@ function toggleText(button_id) {
       showInfo("error");
     }
   }
-}
+};
 
 
-var sendTask = function(id, type, data) {
+var sendNewTask = function(id, type, data) {
   var xhr = new XMLHttpRequest();
 
-  alert("oglum");
+  alert(id + " " + type + " " +data);
 
   xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Tasks');
   
   xhr.responseType = 'json';
-  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-  xhr.setRequestHeader('X-CSRF-TOKEN', 'c0724862f1aef7d1fc77488a39718b34');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
 
   var data;
   xhr.onload = function() {
-
-    console.log(id+type+data);
-  // data is now a Object
-  data = { "id": id, "type": comand , "data": data };
+  	console.log("Response: ", xhr.response);
   };
+
+    data = { 
+    	"id": parseInt(id,10),
+    	"type": type,
+    	"data": {
+    			'input': data,
+    			'output': null  }
+    };
   
-  xhr.send(data);
+  xhr.send(JSON.stringify(data));
 };
 
-var sendcomand = function(id, comand) {
+
+
+
+
+var sendcomand = function(id, command) {
   var xhr = new XMLHttpRequest();
 
   xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Status');
-  
   xhr.responseType = 'json';
-  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-  xhr.setRequestHeader('X-CSRF-TOKEN', 'c0724862f1aef7d1fc77488a39718b34');
-  var pic;
-  fetch(pic).then(function(){
-    
-  });
-  var data;
-  xhr.onload = function() {
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
 
-  // data is now a Object
-  data = { "id": id, "action": comand };
-  };
-  
-  xhr.send(data);
+  console.log(id +" "+ command);
+ 
+  xhr.onload = function() {
+  	console.log("Answer ", xhr.response);
+  	// data is now a Object
+  } ;
+var data = { 
+  		"id": parseInt(id, 10),
+  		"status": command };
+ 
+  xhr.send(JSON.stringify(data));
   return true;
 };
+
+
+
 
 var showInfo = function(comand) {
       document.getElementById("showInfo").style.top = "0px";
