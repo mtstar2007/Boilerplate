@@ -24,8 +24,6 @@ function toggleText(button_id) {
 var sendNewTask = function(id, type, data) {
   var xhr = new XMLHttpRequest();
 
-  alert(id + " " + type + " " +data);
-
   xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Tasks');
   
   xhr.responseType = 'json';
@@ -46,6 +44,7 @@ var sendNewTask = function(id, type, data) {
     };
   
   xhr.send(JSON.stringify(data));
+  showInfo("taskSend");
 };
 
 
@@ -91,6 +90,10 @@ var showInfo = function(comand) {
       }
       if(comand == "error"){
         document.getElementById("showInfo").innerHTML = "Ooooops. Etwas ging schief :("
+        hideInfo();
+      }
+      if(comand == "taskSend"){
+      	document.getElementById("showInfo").innerHTML = "Neuer Task wurde angelegt"
         hideInfo();
       }
 

@@ -145,7 +145,8 @@ main > section:target {
 #refreshButton {
 	position: fixed;
 	background-color: #2F3736;
-	background-image:url("../pictures/refresh_64.png");
+	border-radius: 32px;
+	background-image:url("../images/refresh_64.png");
 	height: 64px;
 	width: 64px;
 	right: 10%;

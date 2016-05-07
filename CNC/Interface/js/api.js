@@ -23,8 +23,6 @@ var getStatus = function() {
 
 			for (var d = 0, dl = data.length; d < dl; d++) {
 				var entry = data[d];
-				var buttonText;
-				// Workload Offline
 
 				code += '<tr>';
 				code += '<td>' + entry.id + '</td>';
@@ -104,27 +102,6 @@ var getTasks = function(){
 	}).catch(function(err){
 		console.log("No Connection to the Tasks API :(")
 	});
-}
-
-/**
-* It's only a test for Sorting
-**/
-var richtung = true;
-var sortierer = function(){
-	//var zahlen = new Array(0.5, 0.1, 1, 27, 2, 10, 4, "192.168.1.1", "192.168.1.7");
-	//var zahlen = iii.join();
-
-	//var test = zahlen[7].split(".");
-	//console.log(test);
-	if(richtung == true) {
-			zahlen.sort(function(a,b){return a-b});
-			richtung = false;
-		} else if(richtung == false) {
-			zahlen.sort(function(a,b){return b-a});
-			richtung = true;	
-		}
-
-	alert(zahlen);
 };
 
 
