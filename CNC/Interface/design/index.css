@@ -26,7 +26,7 @@ table {
 	border: 2px solid;
 	border-color: #405050;
 	position: relative;
-	margin-top: 40px;
+	margin-top: 0px;
 	text-align: center;
 }
 
@@ -40,6 +40,7 @@ thead {
 }
 
 #lastChange{
+	font-size: 11px;
 	color: red;
 }
 
@@ -151,7 +152,7 @@ main > section:target {
 }
 
 /** Fix für newTask **/
-#tasks {
+#tsasks {
 	top: 22%;
 	height: 78%;
 }
@@ -168,14 +169,3 @@ main > section:target {
 	border: 0px;
 }
 
-#newTask {
-	position: fixed;
-	border-radius: 10px 10px 0 0;
-	width: 67%;
-	left: 26%;
-	top: 11%;
-	background: #2F3736;
-	z-index: 0;
-	height: auto;
-	padding: 5px 5px 5px 5px;
-}
