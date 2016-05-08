@@ -24,14 +24,22 @@ function sendNewTask(e) {
     	}
 	};
 
+	xhr.onload = function() {
+		if(xhr.response.message == "OK"){
+			showInfo("taskSend");
+			getTasks();
+		}
+	};
+
 	e.preventDefault();
 	xhr.send(JSON.stringify(data));
+	getTasks();
 }
 
 /**
 *	Get Tasks Informaton with Fetch
 */
-var getTasks = function(){
+function getTasks(){
 	var table = document.querySelector('#tasks-overview tbody');
 
 	fetch(BOTNETURLTASKS, {
@@ -55,6 +63,6 @@ var getTasks = function(){
 			table.innerHTML = 'Failed to load :('
 		}
 	}).catch(function(err){
-		console.log("No Connection to the Tasks API :(")
+		showInfo("error");
 	});
-};
+}

@@ -86,6 +86,7 @@ menu {
 	background: #2F3736;
 	padding: 10px;
 	margin-top: 0px;
+	list-style-type: none;
 }
 
 footer {
@@ -141,7 +142,6 @@ main > section{
 	left: 0%;
 	overflow-x:hidden;
 	visibility: hidden;
-	z-index: 1;
 } 
 
 main > section:target {
@@ -150,11 +150,17 @@ main > section:target {
     visibility: visible;
 }
 
+/** Fix für newTask **/
+#tasks {
+	top: 22%;
+	height: 78%;
+}
+
 #refreshButton {
 	position: fixed;
 	background-color: #2F3736;
 	border-radius: 32px;
-	background-image:url("../images/refresh_64.png");
+	background-image: url("../images/refresh_64.png");
 	height: 64px;
 	width: 64px;
 	right: 10%;
@@ -163,12 +169,13 @@ main > section:target {
 }
 
 #newTask {
-	border: 1px dotted;
-	border-radius: 5px;
 	position: fixed;
+	border-radius: 10px 10px 0 0;
+	width: 67%;
+	left: 26%;
+	top: 11%;
 	background: #2F3736;
-	z-index: 4;
+	z-index: 0;
 	height: auto;
-	padding-top: 0px;
-	top: 60%;
+	padding: 5px 5px 5px 5px;
 }

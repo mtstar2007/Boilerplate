@@ -54,22 +54,19 @@
 			<tbody>
 			</tbody>
 		</table>
-                <form id="form">
-                    <strong>Neuen Task anlegen</strong><br>
-                    
-                    <label for="Type">Type</label>
-                    <select id="type" name="type">
-                        <option>hash-md5</option>
-                        <option>hash-sha256</option>
-                        <option>crack-md5</option>
-                    </select> <br>
-
-                    <label for="data">Data</label>
-                    <input id="data" type="text" name="datainput"><br>
-                    
-                    <label for="data"></label>
-                    <input id="sendTask" type="submit" value="senden">
-                </form>
+		<form id="newTask">
+			<h3>Neuen Task anlegen</h3>   
+			<label>Type </label>
+			<select id="type" name="type">
+				<option>hash-md5</option>
+				<option>hash-sha256</option>
+				<option>crack-md5</option>
+			</select>
+			<label>Data </label>
+			<input id="data" type="text" name="data">
+			<input id="sendTask" type="submit" value="Senden">
+			<hr>
+		</form>
 		</section>
 		<button id="refreshButton" onclick=refreshPage()></button>
 	</main>
@@ -82,6 +79,6 @@
 	getStatus();
 	getTasks();
   });
-  document.getElementById("sendTask").addEventListener("click", function(e) {sendNewTask(e); });
+  document.getElementById("sendTask").addEventListener("click", function(e) { sendNewTask(e); });
 </script>
 </html>

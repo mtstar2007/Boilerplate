@@ -4,7 +4,7 @@
 **/
 
 
-const BOTNETURL = "http://botnet.artificial.engineering:8080/api/Status";
+const BOTNETURLSTATUS = "http://botnet.artificial.engineering:8080/api/Status";
 
 
 /**
@@ -16,13 +16,13 @@ function toggleButton(button_id) {
   	} else {
  		controlBot(button_id, false);
   	}
-};
+}
 
 
 /**
 *	Methode zum ändern der Inhalt des Buttons nach POST
 **/
-var changeInner = function(button_id){
+function changeInner(button_id) {
 
 	var status = document.getElementById(button_id).innerHTML;
 	if(status == "Start"){
@@ -38,12 +38,12 @@ var changeInner = function(button_id){
 /**
 *	Get Status Information from BotnetServer
 */
-var getStatus = function() {
+function getStatus() {
 
 	var xhr = new XMLHttpRequest();
 	var content = document.querySelector('#status-overview tbody');
 
-	xhr.open('GET', BOTNETURL);
+	xhr.open('GET', BOTNETURLSTATUS, true);
 	xhr.responseType = 'json';
 
 	xhr.onload = function() {
@@ -89,12 +89,12 @@ var getStatus = function() {
 		}
 	};
 	xhr.send(null);
-};
+}
 
-var controlBot = function(id, command) {
+function controlBot(id, command) {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('POST', BOTNETURL, true);
+	xhr.open('POST', BOTNETURLSTATUS, true);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
@@ -107,6 +107,7 @@ var controlBot = function(id, command) {
   			} else {
   				showInfo("stop");
   			}	
+  			getStatus();
   		} else {
   			showInfo("error");
   		}
@@ -117,4 +118,4 @@ var data = {
   		"status": command };
  
 	xhr.send(JSON.stringify(data));
-};
+}

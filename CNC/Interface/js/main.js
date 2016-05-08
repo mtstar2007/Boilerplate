@@ -1,4 +1,4 @@
-var refreshPage = function(){
+function refreshPage(){
 	var page = window.location.hash;
 
 	if(page === "#tasks"){
@@ -7,9 +7,9 @@ var refreshPage = function(){
 		getStatus();
 	}
   showInfo("listRefreshed");
-};
+}
 
-var showInfo = function(command) {
+function showInfo(command) {
       document.getElementById("showInfo").style.top = "0px";
 
       if(command == "start"){
@@ -34,14 +34,14 @@ var showInfo = function(command) {
         document.getElementById("showInfo").innerHTML = "Liste wurde aktualisiert";
         hideInfo();
       }
-};
+}
 
 var my_timeout = null;
-var hideInfo = function(){
+function hideInfo(){
   if (my_timeout !== null) return false;
 	my_timeout = setTimeout(function() {
     document.getElementById("showInfo").style.top = "-30px";
     my_timeout = null;
 	}, 3000);
-};
+}
 
