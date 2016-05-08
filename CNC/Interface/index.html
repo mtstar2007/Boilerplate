@@ -42,14 +42,8 @@
 			</table>
 		</section>
 		<section id="tasks">
-		<form id ="newTask">
-				<label>ID: </label><input type="text" name="id" id="id"></input>
-				<label>Type: </label><select name = "type" id="type"><option value="hash-md5">Hash MD5</option><option value="hash-sha256">Hash-sha256</option><option value="crack-md5">Crack-MD5</option></select>
-				<label>Data: </label><input type="text" name ="data" id="data"/required></input>
-				<button id="sendTask" onclick="sendNewTask(document.getElementById('id').value,document.getElementById('type').value,document.getElementById('data').value)">Send Task</button>
-		</form>
 		<table id="tasks-overview">
-			<thead onclick="getTasks();"> 
+			<thead> 
 				<tr>
 					<th>ID</th>
 					<th>Type</th>
@@ -60,10 +54,25 @@
 			<tbody>
 			</tbody>
 		</table>
+                <form id="form">
+                    <strong>Neuen Task anlegen</strong><br>
+                    
+                    <label for="Type">Type</label>
+                    <select id="type" name="type">
+                        <option>hash-md5</option>
+                        <option>hash-sha256</option>
+                        <option>crack-md5</option>
+                    </select> <br>
+
+                    <label for="data">Data</label>
+                    <input id="data" type="text" name="datainput"><br>
+                    
+                    <label for="data"></label>
+                    <input id="sendTask" type="submit" value="senden">
+                </form>
 		</section>
 		<button id="refreshButton" onclick=refreshPage()></button>
 	</main>
-	
 	<footer>
 	<p>CNC Interface by Inan Bayram, Mustafa Yildiz, Asim Bababalim</p>
 </footer>
@@ -73,5 +82,6 @@
 	getStatus();
 	getTasks();
   });
+  document.getElementById("sendTask").addEventListener("click", function(e) {sendNewTask(e); });
 </script>
 </html>

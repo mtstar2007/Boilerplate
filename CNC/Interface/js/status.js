@@ -11,11 +11,11 @@ const BOTNETURL = "http://botnet.artificial.engineering:8080/api/Status";
 *	Methode zum ansteuern der Buttons
 **/
 function toggleButton(button_id) {            
-  if (document.getElementById(button_id).innerHTML == "Start") {
+  	if (document.getElementById(button_id).innerHTML == "Start") {
 		controlBot(button_id, true);
-  } else {
+  	} else {
  		controlBot(button_id, false);
-  }
+  	}
 };
 
 

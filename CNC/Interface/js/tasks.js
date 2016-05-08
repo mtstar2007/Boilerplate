@@ -3,31 +3,30 @@
 * 	@author Inan Bayram, Mustafa Yildiz & Asim Bababalim
 **/
 
-var sendNewTask = function(id, type, data) {
-  var xhr = new XMLHttpRequest();
+const BOTNETURLTASKS = "http://botnet.artificial.engineering:8080/api/Tasks";
 
-  xhr.open('POST', 'http://botnet.artificial.engineering:8080/api/Tasks');
+function sendNewTask(e) {
+	
+	var typeInput = document.getElementById('type').value;
+  	var dataInput = document.getElementById('data').value;
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('POST', BOTNETURLTASKS, true);
   
-  xhr.responseType = 'json';
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
+  	xhr.responseType = 'json';
+  	xhr.setRequestHeader('Content-Type', 'application/json');
+  	xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
 
-  var data;
-  xhr.onload = function() {
-  	console.log("Response: ", xhr.response);
-  };
+	var data = {
+    	type: typeInput,
+    	data: {
+        	input: dataInput
+    	}
+	};
 
-    data = { 
-    	"id": parseInt(id,10),
-    	"type": type,
-    	"data": {
-    			'input': data,
-    			'output': null  }
-    };
-  
-  xhr.send(JSON.stringify(data));
-  showInfo("taskSend");
-};
+	e.preventDefault();
+	xhr.send(JSON.stringify(data));
+}
 
 /**
 *	Get Tasks Informaton with Fetch
@@ -35,7 +34,7 @@ var sendNewTask = function(id, type, data) {
 var getTasks = function(){
 	var table = document.querySelector('#tasks-overview tbody');
 
-	fetch('http://botnet.artificial.engineering:8080/api/Tasks', {
+	fetch(BOTNETURLTASKS, {
 		method: 'get'
 	}).then(function(response){
 		return response.json();
