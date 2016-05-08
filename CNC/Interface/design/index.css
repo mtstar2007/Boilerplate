@@ -34,6 +34,11 @@ table tr:nth-child(2n){
     background: rgba(64,80,80,1);
 }
 
+th, td {
+    overflow: hidden;
+    word-break: break-all;;
+}
+
 thead {
 	background-color: #405050;
 	color: white;
