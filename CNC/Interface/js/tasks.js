@@ -56,7 +56,7 @@ function getTasks(){
 				taskTable += '<td>' + taskArr[i].type + '</td>';
 				taskTable += '<td>' + taskArr[i].data.input + '</td>';
 				taskTable += '<td>' + taskArr[i].data.output + '</td>';
-				taskTable += '<tr>';
+				taskTable += '</tr>';
 			}
 		table.innerHTML = taskTable;
 		} else {
