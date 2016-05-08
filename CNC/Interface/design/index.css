@@ -151,12 +151,6 @@ main > section:target {
     visibility: visible;
 }
 
-/** Fix für newTask **/
-#tsasks {
-	top: 22%;
-	height: 78%;
-}
-
 #refreshButton {
 	position: fixed;
 	background-color: #2F3736;
