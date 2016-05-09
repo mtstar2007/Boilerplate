@@ -34,14 +34,18 @@ table tr:nth-child(2n){
     background: rgba(64,80,80,1);
 }
 
-th, td {
+td {
     overflow: hidden;
-    word-break: break-all;;
+    word-break: break-all;
 }
 
 thead {
 	background-color: #405050;
 	color: white;
+}
+
+#input {
+	width:45%;
 }
 
 #lastChange{
@@ -136,6 +140,10 @@ main {
 	border: 1px dotted;
 	border-radius: 10px;
 	background: #2F3736;
+}
+
+hr {
+	border-color: red;
 }
 
 main > section{
