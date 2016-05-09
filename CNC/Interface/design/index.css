@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
 	background-color: #405050;
 	font-family: 'Quicksand', sans-serif;
@@ -175,11 +174,4 @@ main > section:target {
 	right: 10%;
 	bottom: 10%;
 	border: 0px;
-=======
-
-body {
-	color: #ffffff;
-	background: black;
->>>>>>> 65293a0de3cdb17dc71fb5e87e8f703ce3353b57
 }
-
