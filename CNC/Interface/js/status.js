@@ -85,7 +85,7 @@ function getStatus() {
 			} 
 		} else {
 			//content.innerHTML = 'Failed to load :(';
-			showInfo()
+			showInfo();
 		}
 	};
 	xhr.send(null);
