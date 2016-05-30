@@ -4,7 +4,7 @@
 **/
 
 
-const BOTNETURLSTATUS = "http://botnet.artificial.engineering:8080/api/Status";
+const BOTNETURLSTATUS = "http://localhost:3000/api/status";
 
 
 /**
