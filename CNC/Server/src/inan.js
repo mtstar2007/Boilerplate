@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-auth-token,Token');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -73,6 +73,26 @@ app.get('/api/Status/:id', (req, res) => {
 		res.send(JSON.stringify(found));
 
 	}
+
+});
+
+
+app.post('/api/Status', (req, res) => {
+	var masterToken = 'c0724862f1aef7d1fc77488a39718b34';
+	var userToken = req.get('Token') || null;
+
+	console.log(userToken);
+	if(userToken !== null){
+		if(userToken === masterToken){
+			console.log("Token √");
+		} else {
+			console.log("Wrong Token");
+		}
+		if(userToken == masterToken){
+			console.log("Oooo");
+		}
+	}
+
 
 });
 
