@@ -2,12 +2,15 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 var app = express();
 var serverPort = 3000;
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+var counter = 0;
 
 
 // CORS Fixing => Now are all Clients able to connect to the Service
@@ -83,15 +86,7 @@ app.get('/api/Status/:id', (req, res) => {
 
 });
 
-
-var tasksDatenbank = [{
-	id: 0,
-	type: "hash-md5",
-	data: {
-		input: "HelloWorld",
-		output: null
-	}
-}];
+var tasksDatenbank = [];
 
 app.get('/api/Tasks', (req, res) => {
 	console.log("GET /api/Tasks");
@@ -108,11 +103,21 @@ app.post('/api/Tasks', (req,res) => {
 
 	// If request type allowed
 	if(allowed) {
+		request.id = counter;
+		request.output = 'null';
+		counter++;
 		tasksDatenbank.push(request);
 		res.send(JSON.stringify({message: "OK"}));
 	} else {
 		res.send(JSON.stringify({message: "Not OK"}));
 	}
+
+	fs.writeFile('./tasks.txt', JSON.stringify(tasksDatenbank), function(err) {
+		if(err) throw err;
+
+		console.log("Datenbank wurde aktualisiert");
+
+	});
 
 	console.log("Create a new Task");
 });
@@ -156,6 +161,26 @@ app.post('/api/Status', (req, res) => {
 
 });
 
+
+function getFilesizeInBytes(filename) {
+ var stats = fs.statSync(filename)
+ var fileSizeInBytes = stats["size"]
+ return fileSizeInBytes
+}
+
 app.listen(serverPort, () => {
 	console.log("Server is running √ http://localhost:"+serverPort);
+
+		fs.readFile('./tasks.txt', (err, data) => {
+
+		if (err) throw err;
+
+
+
+		if(getFilesizeInBytes('./tasks.txt') !== 0) {
+		tasksDatenbank = JSON.parse(data.toString('utf8'));
+		}
+	
+	});
+
 });

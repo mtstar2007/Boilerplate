@@ -1,0 +1,1 @@
+[{"type":"hash-md5","data":{"input":"hahah"},"id":0,"output":"null"}]
