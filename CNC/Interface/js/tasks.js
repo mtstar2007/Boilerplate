@@ -3,7 +3,8 @@
 * 	@author Inan Bayram, Mustafa Yildiz & Asim Bababalim
 **/
 
-const BOTNETURLTASKS = "http://botnet.artificial.engineering:8080/api/Tasks";
+//const BOTNETURLTASKS = "http://botnet.artificial.engineering:8080/api/Tasks";
+const BOTNETURLTASKS = "http://localhost:3000/api/Tasks";
 
 function sendNewTask(e) {
 	

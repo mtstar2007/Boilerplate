@@ -49,6 +49,8 @@ var meinedatenbank = [{
 }];
 
 
+
+
 app.get('/api/Status', (req, res) => {
 	console.log("GET /api/Status");
 
@@ -79,6 +81,40 @@ app.get('/api/Status/:id', (req, res) => {
 
 	}
 
+});
+
+
+var tasksDatenbank = [{
+	id: 0,
+	type: "hash-md5",
+	data: {
+		input: "HelloWorld",
+		output: null
+	}
+}];
+
+app.get('/api/Tasks', (req, res) => {
+	console.log("GET /api/Tasks");
+
+	res.header("Content-Type", "text/plain");
+	res.send(JSON.stringify(tasksDatenbank));
+});
+
+app.post('/api/Tasks', (req,res) => {
+
+	var request = req.body;
+	var allowedTypes = ["hash-md5","hash-sha256","crack-md5"];
+	var allowed = allowedTypes.indexOf(request.type) > -1;
+
+	// If request type allowed
+	if(allowed) {
+		tasksDatenbank.push(request);
+		res.send(JSON.stringify({message: "OK"}));
+	} else {
+		res.send(JSON.stringify({message: "Not OK"}));
+	}
+
+	console.log("Create a new Task");
 });
 
 
