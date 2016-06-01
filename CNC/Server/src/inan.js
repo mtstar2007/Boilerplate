@@ -1,8 +1,13 @@
 // GET /api/Status/
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var serverPort = 3000;
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 // CORS Fixing => Now are all Clients able to connect to the Service
@@ -15,7 +20,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-auth-token,Token');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Token');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -88,9 +93,28 @@ app.post('/api/Status', (req, res) => {
 		} else {
 			console.log("Wrong Token");
 		}
-		if(userToken == masterToken){
-			console.log("Oooo");
+	}
+
+	var workloadID = req.body.id;
+	var runCommand = req.body.status;
+
+	var found = meinedatenbank.find(function(obj) {
+		return obj.id == workloadID;
+	});
+
+	if(workloadID !== null && runCommand !== null){
+		if(found !== undefined){
+			if(runCommand === true){
+				found.workload = 1;
+				console.log("Workload "+workloadID+" wurde gestartet");
+			} else {
+				found.workload = 0;
+				console.log("Workload "+workloadID+" wurde angehalten");
+			}
+			res.send(JSON.stringify({message: "OK"}));
 		}
+	} else {
+		res.send(JSON.stringify({message: "Not OK"}));
 	}
 
 
