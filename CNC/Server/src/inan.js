@@ -34,31 +34,13 @@ app.use(function (req, res, next) {
 });
 
 // Datenbestand => Kommt noch in Datenbank?
-var meinedatenbank = [{
-	id: 0,
-	ip: "95.215.45.239",
-	task: 1,
-	workload: 0.6
-}, {
-	id: 1,
-	ip: "192.30.252.153",
-	task: 0,
-	workload: 1.0
-},{
-	id: 2,
-	ip: "192.30.253.154",
-	task: 0,
-	workload: 1.0
-}];
-
-
-
+var statusDatenbank = [];
 
 app.get('/api/Status', (req, res) => {
 	console.log("GET /api/Status");
 
 	res.header("Content-Type", "text/plain");
-	res.send(JSON.stringify(meinedatenbank));
+	res.send(JSON.stringify(statusDatenbank));
 });
 
 
@@ -69,7 +51,7 @@ app.get('/api/Status/:id', (req, res) => {
 	if (id !== null) {
 
 		var consoleOutput = "GET /api/Status/" +id;
-		var found = meinedatenbank.find(function(obj) {
+		var found = statusDatenbank.find(function(obj) {
 			return obj.id == id;
 		});
 
@@ -104,7 +86,7 @@ app.post('/api/Tasks', (req,res) => {
 	// If request type allowed
 	if(allowed) {
 		request.id = counter;
-		request.output = 'null';
+		request.data.output = 'null';
 		counter++;
 		tasksDatenbank.push(request);
 		res.send(JSON.stringify({message: "OK"}));
@@ -115,7 +97,7 @@ app.post('/api/Tasks', (req,res) => {
 	fs.writeFile('./tasks.txt', JSON.stringify(tasksDatenbank), function(err) {
 		if(err) throw err;
 
-		console.log("Datenbank wurde aktualisiert");
+		console.log("Tasks Datenbank wurde aktualisiert");
 
 	});
 
@@ -126,11 +108,13 @@ app.post('/api/Tasks', (req,res) => {
 app.post('/api/Status', (req, res) => {
 	var masterToken = 'c0724862f1aef7d1fc77488a39718b34';
 	var userToken = req.get('Token') || null;
+	var rights = false;
 
 	console.log(userToken);
 	if(userToken !== null){
 		if(userToken === masterToken){
 			console.log("Token √");
+			rights = true;
 		} else {
 			console.log("Wrong Token");
 		}
@@ -139,10 +123,11 @@ app.post('/api/Status', (req, res) => {
 	var workloadID = req.body.id;
 	var runCommand = req.body.status;
 
-	var found = meinedatenbank.find(function(obj) {
+	var found = statusDatenbank.find(function(obj) {
 		return obj.id == workloadID;
 	});
 
+	if(rights) {
 	if(workloadID !== null && runCommand !== null){
 		if(found !== undefined){
 			if(runCommand === true){
@@ -157,15 +142,24 @@ app.post('/api/Status', (req, res) => {
 	} else {
 		res.send(JSON.stringify({message: "Not OK"}));
 	}
+} else {
+	res.send(JSON.stringify({message: "Not OK"}));
+}
+
+	fs.writeFile('./status.txt', JSON.stringify(statusDatenbank), function(err) {
+	if(err) throw err;
+
+	console.log("Status Datenbank wurde aktualisiert");
+
+	});
 
 
 });
 
-
 function getFilesizeInBytes(filename) {
- var stats = fs.statSync(filename)
- var fileSizeInBytes = stats["size"]
- return fileSizeInBytes
+	var stats = fs.statSync(filename)
+	var fileSizeInBytes = stats["size"]
+	return fileSizeInBytes
 }
 
 app.listen(serverPort, () => {
@@ -174,13 +168,20 @@ app.listen(serverPort, () => {
 		fs.readFile('./tasks.txt', (err, data) => {
 
 		if (err) throw err;
+			if(getFilesizeInBytes('./tasks.txt') !== 0) {
+				tasksDatenbank = JSON.parse(data.toString('utf8'));
+				counter = tasksDatenbank.length;
+			}
+		});
+
+		fs.readFile('./status.txt', (err, data) => {
+
+		if (err) throw err;
+			if(getFilesizeInBytes('./status.txt') !== 0) {
+				statusDatenbank = JSON.parse(data.toString('utf8'));
+			}
+		});
 
 
-
-		if(getFilesizeInBytes('./tasks.txt') !== 0) {
-		tasksDatenbank = JSON.parse(data.toString('utf8'));
-		}
-	
-	});
 
 });
