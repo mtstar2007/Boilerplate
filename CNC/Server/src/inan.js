@@ -88,21 +88,27 @@ app.post('/api/Tasks', (req,res) => {
 		if(request.id !== undefined){ // ID wird übergeben
 			//id wird gesucht, bei nicht finden wirds null gesetzt
 			var tempid = tasksDatenbank.find(function(obj) {
-					return obj.id == request.id;
+					return obj.id == request.id || null;
 			});
-			// 
-			if(tempid === null){ // ID Existiert nicht ==> Keine Modifizierung
+
+      var sendid={
+                   type:request.type,
+                   data:{ input:request.data.input,
+                          output:request.data.output
+                   },
+                   id:request.id
+      };
+			//
+			if(sendid === null){ // ID Existiert nicht ==> Keine Modifizierung
 				res.send(JSON.stringify({message: "Not OK"}));
 				// request.data.output = 'null';
 				// tasksDatenbank.push(request);
 			} else { // ID existiert ==> Modifizierung
 				var asim = tasksDatenbank.indexOf(tempid);
-				delete tasksDatenbank[asim];
-				console.log("-------");
-				console.log(asim);
-				tempid.type = request.type;
-				tempid.input = request.input;
-				tempid.output = request.output;
+				for (var i = 0; i < tasksDatenbank.length; i++) {
+          if(tasksDatenbank[i].id==request.id)
+            tasksDatenbank[i]=sendid;
+        }
 				res.send(JSON.stringify({message: "OK"}));
 				// request.id = tempid;
 				// request.data.output = 'null';
