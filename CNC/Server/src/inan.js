@@ -85,25 +85,36 @@ app.post('/api/Tasks', (req,res) => {
 
 	// If request type allowed
 	if(allowed) {
-		if(request.id !== undefined){
+		if(request.id !== undefined){ // ID wird übergeben
 			//id wird gesucht, bei nicht finden wirds null gesetzt
-			var tempid = tasksDatenbank.find(request.id) || null;
-			if(tempid == null){
-				request.data.output = 'null';
-				tasksDatenbank.push(request);
-			} else {
-				request.id = counter;
-				request.data.output = 'null';
-				counter++;
-				tasksDatenbank.push(request);
+			var tempid = tasksDatenbank.find(function(obj) {
+					return obj.id == request.id;
+			});
+			// 
+			if(tempid === null){ // ID Existiert nicht ==> Keine Modifizierung
+				res.send(JSON.stringify({message: "Not OK"}));
+				// request.data.output = 'null';
+				// tasksDatenbank.push(request);
+			} else { // ID existiert ==> Modifizierung
+				var asim = tasksDatenbank.indexOf(tempid);
+				delete tasksDatenbank[asim];
+				console.log("-------");
+				console.log(asim);
+				tempid.type = request.type;
+				tempid.input = request.input;
+				tempid.output = request.output;
+				res.send(JSON.stringify({message: "OK"}));
+				// request.id = tempid;
+				// request.data.output = 'null';
+				// tasksDatenbank.push(request);
 			}
-		} else {
+		} else { // ID undefiniert
 			request.id = counter;
 			request.data.output = 'null';
 			counter++;
 			tasksDatenbank.push(request);
+			res.send(JSON.stringify({message: "OK"}));
 		}
-		res.send(JSON.stringify({message: "OK"}));
 	} else {
 		res.send(JSON.stringify({message: "Not OK"}));
 	}
