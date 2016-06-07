@@ -85,10 +85,24 @@ app.post('/api/Tasks', (req,res) => {
 
 	// If request type allowed
 	if(allowed) {
-		request.id = counter;
-		request.data.output = 'null';
-		counter++;
-		tasksDatenbank.push(request);
+		if(request.id !== undefined){
+			//id wird gesucht, bei nicht finden wirds null gesetzt
+			var tempid = tasksDatenbank.find(request.id) || null;
+			if(tempid == null){
+				request.data.output = 'null';
+				tasksDatenbank.push(request);
+			} else {
+				request.id = counter;
+				request.data.output = 'null';
+				counter++;
+				tasksDatenbank.push(request);
+			}
+		} else {
+			request.id = counter;
+			request.data.output = 'null';
+			counter++;
+			tasksDatenbank.push(request);
+		}
 		res.send(JSON.stringify({message: "OK"}));
 	} else {
 		res.send(JSON.stringify({message: "Not OK"}));
