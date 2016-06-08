@@ -86,10 +86,6 @@ app.post('/api/Tasks', (req,res) => {
 	// If request type allowed
 	if(allowed) {
 		if(request.id !== undefined){ // ID wird übergeben
-			//id wird gesucht, bei nicht finden wirds null gesetzt
-			var tempid = tasksDatenbank.find(function(obj) {
-					return obj.id == request.id || null;
-			});
 
       var sendid={
                    type:request.type,
@@ -104,7 +100,7 @@ app.post('/api/Tasks', (req,res) => {
 				// request.data.output = 'null';
 				// tasksDatenbank.push(request);
 			} else { // ID existiert ==> Modifizierung
-				var asim = tasksDatenbank.indexOf(tempid);
+				
 				for (var i = 0; i < tasksDatenbank.length; i++) {
           if(tasksDatenbank[i].id==request.id)
             tasksDatenbank[i]=sendid;
@@ -155,7 +151,8 @@ app.post('/api/Status', (req, res) => {
 	var runCommand = req.body.status;
 
 	var found = statusDatenbank.find(function(obj) {
-		return obj.id == workloadID;
+    console.log(obj.id == workloadID);
+    return obj.id == workloadID;
 	});
 
 	if(rights) {
