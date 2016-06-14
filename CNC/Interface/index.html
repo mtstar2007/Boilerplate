@@ -19,30 +19,57 @@
 <body>	
 	<aside>
 		<menu>
+<<<<<<< HEAD
 			<h1>CNC Interface</h1>
 			<li class="link-status"><a href="#status">Status</a></li>
 			<li class="link-tasks"><a href="#tasks">Tasks</a></li>			
+=======
+			<li><a href="#status"><span class="icon-status"></span>Status</a></li>
+			<li><a href="#tasks"><span class="icon-tasks"></span>Tasks</a></li>
+			<li><a href="#reports"><span class="icon-reports"></span>Reports</a></li>
+			<li><a href="#admin"><span class="icon-admin"></span>Admin</a></li>
+>>>>>>> 14809f5d5452e6aaf51b5df1f97881879f918aff
 		</menu>
 	</aside>
 	<div id="showInfo"></div>
 	<main>
 		<section id="status">
+<<<<<<< HEAD
 			<p id="lastChange"></p>
+=======
+			<div class="table-wrapper">
+>>>>>>> 14809f5d5452e6aaf51b5df1f97881879f918aff
 			<table id="status-overview">
 				<thead onclick="$('#status-overview').tablesorter()">
 					<tr>
-						<th>Workload</th>
+						<th>ID</th>
 						<th>IP</th>
 						<th>Task</th>
+<<<<<<< HEAD
 						<th>Status</th>
 						<th>Options</th>
 					<tr>
 				</thead>
 				<tbody>
+=======
+						<th>Workload</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="5">Press Refresh to load Bot Status Overview.</td>
+					</tr>
+>>>>>>> 14809f5d5452e6aaf51b5df1f97881879f918aff
 				</tbody>
 			</table>
+			</div>
+			<div class="action-bar">
+				<button><span class="icon-refresh"></span></button>
+			</div>
 		</section>
 		<section id="tasks">
+<<<<<<< HEAD
 		<form id="newTask">
 			<h3>Neuen Task anlegen</h3>   
 			<label>Type </label>
@@ -69,12 +96,51 @@
 			<tbody>
 			</tbody>
 		</table>
+=======
+			<div class="table-wrapper">
+			<table id="tasks-overview">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Type</th>
+						<th>Input</th>
+						<th>Output</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="5">Press Refresh to load Tasks Overview.</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<div class="action-form">
+				<p>
+					<select name="type">
+						<option value="hash-md5" selected>hash-md5</option>
+						<option value="hash-sha256">hash-sha256</option>
+						<option value="crack-md5">crack-md5</option>
+					</select>
+					<input name="input" type="text" placeholder="input data">
+					<button><span class="icon-okay"></span></button>
+				</p>
+			</div>
+			<div class="action-bar">
+				<button><span class="icon-refresh"></span></button>
+			</div>
+>>>>>>> 14809f5d5452e6aaf51b5df1f97881879f918aff
 		</section>
 		<button id="refreshButton" onclick=refreshPage()></button>
 	</main>
+<<<<<<< HEAD
 	<footer>
 	<p>CNC Interface by Inan Bayram, Mustafa Yildiz, Asim Bababalim</p>
 </footer>
+=======
+
+	<script src="./source/index.js"></script>
+>>>>>>> 14809f5d5452e6aaf51b5df1f97881879f918aff
 </body>
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
