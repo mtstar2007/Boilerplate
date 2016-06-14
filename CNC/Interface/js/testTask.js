@@ -44,7 +44,9 @@ function testStatus() {
   	xhr.setRequestHeader('Token', 'c0724862f1aef7d1fc77488a39718b34');
 
 	var data = {
-		ip: null
+		ip: null,
+		task: 2,
+		workload: 1
 		};
 
 	xhr.onload = function() {

@@ -75,7 +75,6 @@ app.post('/api/Tasks', (req,res) => {
 	var allowed = allowedTypes.indexOf(request.type) > -1;
 	var rights = checkToken(userToken);
 
-	console.log("Create a new Task");
 	if(rights){
 		if(allowed) {
 			if(request.id !== undefined) { // ID wird übergeben
@@ -86,6 +85,7 @@ app.post('/api/Tasks', (req,res) => {
 
 			// Wenn ID angegeben aber nicht existiert
 			if(checkID === undefined) {
+				console.log("ID angegeben, existiert aber nicht");
 				res.send(JSON.stringify({message: "Not OK"}));
 				return;
 			} else { // ID existiert ==> Modifizierung
@@ -103,6 +103,7 @@ app.post('/api/Tasks', (req,res) => {
             			tasksDatenbank[i]=sendid;
           			}
         		}
+        		console.log("ID existiert => Modifizierung");
 				res.send(JSON.stringify({message: "OK"}));
 				}
 			} else { // Keine ID angeben ==> Neue Task
@@ -110,6 +111,7 @@ app.post('/api/Tasks', (req,res) => {
 				request.data.output = 'null';
 				counter++;
 				tasksDatenbank.push(request);
+				console.log("Neue Task");
 				res.send(JSON.stringify({message: "OK"}));
 			}
 		} else {
@@ -161,7 +163,7 @@ app.post('/api/Status', (req, res) => {
                    workload: newStatusWorkload
       		};
       		statusDatenbank.push(newStatus);
-      		console.log("New Status created");
+      		console.log("Neue Status wurde angelegt");
       		statusCounter++;
 		} else {
 			res.send(JSON.stringify({message: "Not OK"}));
