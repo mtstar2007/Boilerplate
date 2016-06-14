@@ -3,6 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var cors = require('cors');
 var app = express();
 var serverPort = 3000;
 const masterToken = 'c0724862f1aef7d1fc77488a39718b34';
@@ -10,30 +11,10 @@ const masterToken = 'c0724862f1aef7d1fc77488a39718b34';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 var counter = 0;
-
-
-// CORS Fixing => Now are all Clients able to connect to the Service
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Token');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
+var statusCounter = 0;
 
 // Equal Token
 function checkToken(userToken) {
@@ -47,7 +28,6 @@ function checkToken(userToken) {
 		}
 	}
 }
-
 
 // Datenbestand => Kommt noch in Datenbank?
 var statusDatenbank = [];
@@ -145,7 +125,9 @@ app.post('/api/Tasks', (req,res) => {
 	});
 });
 
-
+/**
+* POST Status
+*/
 app.post('/api/Status', (req, res) => {
 	var userToken = req.get('Token') || null;
 	var workloadID = req.body.id;
@@ -153,22 +135,34 @@ app.post('/api/Status', (req, res) => {
 	rights = checkToken(userToken);
 
 	var found = statusDatenbank.find(function(obj) {
-    console.log(obj.id == workloadID);
-    return obj.id == workloadID;
+    	return obj.id == workloadID;
 	});
 
 	if(rights) {
-		if(workloadID !== null && runCommand !== null){
+		if(workloadID !== null && workloadID !== undefined && runCommand !== null) {
 			if(found !== undefined){
 				if(runCommand === true){
 					found.workload = 1;
-					console.log("Workload "+workloadID+" wurde gestartet");
+					console.log("Workload " + workloadID + " wurde gestartet");
 				} else {
 					found.workload = 0;
-					console.log("Workload "+workloadID+" wurde angehalten");
+					console.log("Workload " + workloadID + " wurde angehalten");
 				}
 				res.send(JSON.stringify({message: "OK"}));
 			}
+		} else if(workloadID == undefined) { // Neue Status erstellen
+			var newStatusIP = req.body.ip || "127.0.0.1";
+			var newStatusTask = req.body.task || 0;
+			var newStatusWorkload = req.body.workload || 0;
+			var newStatus = {
+                   id: statusCounter,
+                   ip: newStatusIP,
+                   task: newStatusTask,
+                   workload: newStatusWorkload
+      		};
+      		statusDatenbank.push(newStatus);
+      		console.log("New Status created");
+      		statusCounter++;
 		} else {
 			res.send(JSON.stringify({message: "Not OK"}));
 		}
@@ -205,6 +199,7 @@ app.listen(serverPort, () => {
 	if (err) throw err;
 		if(getFilesizeInBytes('./status.txt') !== 0) {
 			statusDatenbank = JSON.parse(data.toString('utf8'));
+			statusCounter = statusDatenbank.length;
 		}
 	});
 });
