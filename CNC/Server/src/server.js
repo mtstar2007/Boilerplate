@@ -1,5 +1,3 @@
-// GET /api/Status/
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -8,6 +6,8 @@ var app = express();
 var serverPort = 3000;
 const masterToken = 'c0724862f1aef7d1fc77488a39718b34';
 
+var statusDatenbank = [];
+var tasksDatenbank = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,7 +16,7 @@ app.use(cors());
 var counter = 0;
 var statusCounter = 0;
 
-// Equal Token
+/** Check Token */
 function checkToken(userToken) {
 	if(userToken !== null){
 		if(userToken === masterToken){
@@ -29,16 +29,15 @@ function checkToken(userToken) {
 	}
 }
 
-// Datenbestand => Kommt noch in Datenbank?
-var statusDatenbank = [];
-
+/** GET Status */
 app.get('/api/Status', (req, res) => {
 	console.log("GET /api/Status");
 
-	res.header("Content-Type", "text/plain");
+	res.header("Content-Type", "application/json");
 	res.send(JSON.stringify(statusDatenbank));
 });
 
+/** GET Status mit Parameter */
 app.get('/api/Status/:id', (req, res) => {
 
 	var id = req.params.id || null;
@@ -59,8 +58,7 @@ app.get('/api/Status/:id', (req, res) => {
 	}
 });
 
-var tasksDatenbank = [];
-
+/** GET Tasks */
 app.get('/api/Tasks', (req, res) => {
 	console.log("GET /api/Tasks");
 
@@ -68,6 +66,28 @@ app.get('/api/Tasks', (req, res) => {
 	res.send(JSON.stringify(tasksDatenbank));
 });
 
+/** GET Tasks mit Parameter */
+app.get('/api/Tasks/:id', (req, res) => {
+
+	var id = req.params.id || null;
+	if (id !== null) {
+		var consoleOutput = "GET /api/Tasks/" +id;
+		var found = tasksDatenbank.find(function(obj) {
+			return obj.id == id;
+		});
+
+		if(found === undefined) {
+			consoleOutput += " => Not Found";
+		} else {
+			consoleOutput += " => Found";
+		}
+
+		console.log(consoleOutput);
+		res.send(JSON.stringify(found));
+	}
+});
+
+/** POST Tasks */
 app.post('/api/Tasks', (req,res) => {
 	var userToken = req.get('Token') || null;
 	var request = req.body;
@@ -77,18 +97,20 @@ app.post('/api/Tasks', (req,res) => {
 
 	if(rights){
 		if(allowed) {
-			if(request.id !== undefined) { // ID wird übergeben
+			/** ID wird übergeben */
+			if(request.id !== undefined) {
 
 			var checkID = tasksDatenbank.find(function(obj) {
 				return obj.id == request.id;
 			});
 
-			// Wenn ID angegeben aber nicht existiert
+			/** Wenn ID angegeben, aber nicht existiert */
 			if(checkID === undefined) {
 				console.log("ID angegeben, existiert aber nicht");
 				res.send(JSON.stringify({message: "Not OK"}));
 				return;
-			} else { // ID existiert ==> Modifizierung
+			/** ID existiert -> Modifizierung */
+			} else {
 				
 				var sendid = {
                    type:request.type,
@@ -103,15 +125,16 @@ app.post('/api/Tasks', (req,res) => {
             			tasksDatenbank[i]=sendid;
           			}
         		}
-        		console.log("ID existiert => Modifizierung");
+        		console.log("ID existiert -> Modifizierung");
 				res.send(JSON.stringify({message: "OK"}));
 				}
-			} else { // Keine ID angeben ==> Neue Task
+			/** Keine ID angegeben -> Neuer Task */
+			} else {
 				request.id = counter;
 				request.data.output = 'null';
 				counter++;
 				tasksDatenbank.push(request);
-				console.log("Neue Task");
+				console.log("Neuer Task");
 				res.send(JSON.stringify({message: "OK"}));
 			}
 		} else {
@@ -127,9 +150,7 @@ app.post('/api/Tasks', (req,res) => {
 	});
 });
 
-/**
-* POST Status
-*/
+/** POST Status */
 app.post('/api/Status', (req, res) => {
 	var userToken = req.get('Token') || null;
 	var workloadID = req.body.id;
@@ -163,7 +184,7 @@ app.post('/api/Status', (req, res) => {
                    workload: newStatusWorkload
       		};
       		statusDatenbank.push(newStatus);
-      		console.log("Neue Status wurde angelegt");
+      		console.log("Neuer Status wurde angelegt");
       		statusCounter++;
 		} else {
 			res.send(JSON.stringify({message: "Not OK"}));
@@ -178,12 +199,14 @@ app.post('/api/Status', (req, res) => {
 	});
 });
 
+/** Überprüfung, ob .txt Inhalt enthält */
 function getFilesizeInBytes(filename) {
 	var stats = fs.statSync(filename);
 	var fileSizeInBytes = stats["size"];
 	return fileSizeInBytes;
 }
 
+/** Server Start und Initialisierung */
 app.listen(serverPort, () => {
 	console.log("Server is running on http://localhost:"+serverPort + " √");
 
